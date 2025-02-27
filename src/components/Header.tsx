@@ -4,11 +4,15 @@ import {Product} from "../Models/Product";
 import Order from "./Order";
 
 
-const showOrders = (props: { orders: Product[] } ) => {
+const showOrders = (props: { orders: Product[]; onDelete: (item: number) => void } ) => {
+    let sum: number = 0;
+    sum= props.orders.reduce((sum, order) => sum + (order.price ?? 0), 0);
+    sum = Math.round(sum * 100) / 100;
     return (<>
         {props.orders.map((order, index) => (
-            <Order key={order.id} item={order}></Order>
+            <Order key={order.id} item={order} onDelete={props.onDelete}></Order>
         ))}
+        <p className={'sum'}>Sum: {sum}$</p>
     </>)
 }
 const showNothing = () => {
@@ -18,8 +22,8 @@ const showNothing = () => {
       </div>
   )
 }
-
-function Header(props: { orders: Product[] }) {
+//props: { items: any[]; onAdd: (item: any) => void}
+function Header(props: { orders: Product[]; onDelete: (id: number) => void }) {
 
     let [cartOpen, setCartOpen] = React.useState(false);
 

@@ -57,11 +57,15 @@ function App() {
         }
 
     }
+    
+    function deleteOrder(id: number) {
+        setOrders(orders.filter(order => order.id !== id));
+    }
 
 
   return (
     <div className={"wrapper"}>
-      <Header orders={orders}></Header>
+      <Header orders={orders} onDelete={deleteOrder}></Header>
         <Items items={products} onAdd={addToOrder}></Items>
       <Footer></Footer>
 
