@@ -3,10 +3,12 @@ import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items from "./components/Items/Items";
+import {Product} from "./Models/Product";
 
 function App() {
 
-    const [products, setProducts] = React.useState(
+    const [orders, setOrders]= React.useState<Product[]>([]);
+    const [products, setProducts] = React.useState<Product[]>(
         [
             {
             id:1,
@@ -43,10 +45,24 @@ function App() {
         ]
     );
 
+    function addToOrder(item: Product) {
+        let isInArray = false;
+       orders.forEach(order => {
+           if (order.id === item.id) {
+               isInArray = true;
+           }
+       })
+        if (!isInArray) {
+            setOrders([...orders, item]);
+        }
+
+    }
+
+
   return (
     <div className={"wrapper"}>
-      <Header></Header>
-        <Items items={products}></Items>
+      <Header orders={orders}></Header>
+        <Items items={products} onAdd={addToOrder}></Items>
       <Footer></Footer>
 
 
