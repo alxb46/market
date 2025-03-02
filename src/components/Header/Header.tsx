@@ -1,7 +1,7 @@
 import React from "react";
 import {FaBasketShopping} from "react-icons/fa6";
-import {Product} from "../Models/Product";
-import Order from "./Order";
+import {Product} from "../../Models/Product";
+import Order from "../Order/Order";
 
 
 const showOrders = (props: { orders: Product[]; onDelete: (item: number) => void } ) => {

@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./Item.module.css"
-function Item(props: any) {
+import {Product} from "../../Models/Product";
+function Item(props: { item: Product; onAdd: (item: Product) => void; onProductInfo: (product: Product)=> void}) {
     return (
         <div className={'item'}>
-            <img src={"./assets/" + props.item.img} alt="image"/>
+            <img src={"./assets/" + props.item.img} alt="image" onClick={()=> props.onProductInfo(props.item)} />
             <h2>{props.item.title}</h2>
             <p>{props.item.description}</p>
             <b>{props.item.price} $</b>

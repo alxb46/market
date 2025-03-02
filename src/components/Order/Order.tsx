@@ -1,5 +1,5 @@
 import React from "react";
-import {Product} from "../Models/Product";
+import {Product} from "../../Models/Product";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 //props: { items: any[]; onAdd: (item: any) => void}
